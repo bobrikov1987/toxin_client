@@ -1,4 +1,6 @@
-import {bootstrap} from './framework'
+import {bootstrap, wfm} from './framework'
 import {appModule} from './app/app.module'
 
-bootstrap(appModule)
+wfm.delay(500).then(() => {
+  bootstrap(appModule);
+})
