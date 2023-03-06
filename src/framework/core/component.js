@@ -1,12 +1,8 @@
-const uniteAttributes = (source, target) => {
-  for (let i = 0; i < source.attributes.length; i += 1) {
-    const name = source.attributes[i].name;
-    const value = source.attributes[i].value;
-    if (target.hasAttribute(name)) {
-      target.setAttribute(name, `${value} ${target.getAttribute(name)}`);
-    } else target.setAttribute(name, value);
-  }
-}
+import {wfm} from '../tools/utils'
+
+const EVENTS = 'events'
+const BEFORE_MOUNT = 'beforeMount'
+const MOUNTED = 'mounted'
 
 export class Component {
   constructor(config) {
@@ -14,14 +10,28 @@ export class Component {
     this.template = config.template;
   }
 
-  render(parent = document) {
-    const sourceEl = parent.querySelector(this.selector);
-    if (!sourceEl) return null;
+  _initEvent(el) {
+    if (!wfm.isExist(this[EVENTS])) return;
 
-    sourceEl.insertAdjacentHTML('afterend', this.template);
-    const targetEl = sourceEl.nextElementSibling;
-    uniteAttributes(sourceEl, targetEl);
-    sourceEl.remove();
-    return targetEl;
+    const events = this[EVENTS]();
+    Object.keys(events).forEach(key => {
+      const handler = this[events[key]];
+      if (!wfm.isFunction(handler)) return;
+
+      let [type, selector] = key.split(' ');
+      el.querySelectorAll(selector)
+        ?.forEach(el => el.addEventListener(type, handler.bind(this)));
+    })
+  }
+
+  render(parent = document.body) {
+    let el = parent.querySelector(this.selector);
+    if (!el) return null;
+
+    if (wfm.isExist(this[BEFORE_MOUNT])) this[BEFORE_MOUNT]();
+    el = wfm.insertComponent(el, this.template);
+    this._initEvent(el);
+    if (wfm.isExist(this[MOUNTED])) this[MOUNTED]();
+    return el;
   }
 }
