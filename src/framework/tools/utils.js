@@ -1,4 +1,4 @@
-const uniteAttributes = (source, target) => {
+const _uniteAttributes = (source, target) => {
   for (let i = 0; i < source.attributes.length; i += 1) {
     const name = source.attributes[i].name;
     const value = source.attributes[i].value;
@@ -18,17 +18,17 @@ const isExist = (v) => (typeof v !== 'undefined')
 
 const isFunction = (f) => (typeof f === 'function')
 
-const insertComponent = (el, template) => {
-  el.insertAdjacentHTML('afterend', template);
-  const result = el.nextElementSibling;
-  uniteAttributes(el, result);
-  el.remove();
+const replaceNode = (node, template) => {
+  node.insertAdjacentHTML('afterend', template);
+  const result = node.nextElementSibling;
+  _uniteAttributes(node, result);
+  node.remove();
   return result;
 }
 
-export const wfm = {
+export const _ = {
   delay,
   isExist,
   isFunction,
-  insertComponent,
+  replaceNode,
 }

@@ -1,7 +1,6 @@
-import {WFMComponent} from '../../framework'
-import {router} from "../../framework/tools/router";
+import {FWComponent, router} from 'fw'
 
-class AppFooter extends WFMComponent {
+class AppFooter extends FWComponent {
   constructor(config) {
     super(config);
   }

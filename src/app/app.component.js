@@ -1,6 +1,6 @@
-import {WFMComponent} from '../framework'
+import {FWComponent} from 'fw'
 
-class AppComponent extends WFMComponent {
+class AppComponent extends FWComponent {
   constructor(config) {
     super(config);
   }

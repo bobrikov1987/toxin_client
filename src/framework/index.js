@@ -1,11 +1,13 @@
-import {Component as WFMComponent} from './core/component'
-import {Module as WFMModule} from './core/module'
+import {Component as FWComponent} from './core/component'
+import {Module as FWModule} from './core/module'
 import {bootstrap} from './core/bootstrap'
-import {wfm} from './tools/utils'
+import {router} from './tools/router'
+import {_} from './tools/utils'
 
 export {
-  WFMComponent,
-  WFMModule,
-  wfm,
+  FWComponent,
+  FWModule,
+  router,
+  _,
   bootstrap,
 }

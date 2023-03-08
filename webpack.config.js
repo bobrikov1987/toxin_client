@@ -2,7 +2,7 @@ const path = require('path')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  context: path.join(__dirname, 'src'),
+  context: path.resolve(__dirname, 'src'),
 
   mode: 'development',
 
@@ -10,13 +10,19 @@ module.exports = {
 
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'),
   },
 
   devtool: 'eval',
 
   devServer: {
     port: 3300,
+  },
+
+  resolve: {
+    alias: {
+      'fw': path.resolve(__dirname, 'src', 'framework'),
+    },
   },
 
   plugins: [

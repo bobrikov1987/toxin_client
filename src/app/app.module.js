@@ -1,10 +1,9 @@
-import {WFMModule} from '../framework'
+import {FWModule} from 'fw'
 import {appComponent} from './app.component'
-import {appRoutes} from './app.routes'
-import {appHeader} from './common/app.header'
-import {appFooter} from './common/app.footer'
+import {routes} from './routes'
+import {components} from './components'
 
-class AppModule extends WFMModule {
+class AppModule extends FWModule {
   constructor(config) {
     super(config);
   }
@@ -12,9 +11,6 @@ class AppModule extends WFMModule {
 
 export const appModule = new AppModule({
   root: appComponent,
-  routes: appRoutes,
-  components: [
-    appHeader,
-    appFooter,
-  ],
+  routes: routes,
+  components: components,
 })
