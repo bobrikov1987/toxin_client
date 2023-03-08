@@ -11,7 +11,7 @@ export const appHeader = new AppHeader({
   template: `
     <header>
       <span>
-        Header App
+        {{ title }}
       </span>
 
       <nav>

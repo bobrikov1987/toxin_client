@@ -18,8 +18,22 @@ function initEvents() {
   });
 }
 
+function compileTemplate(template, data) {
+  if (_.isExist(data))
+
+  template = template.replace(/{{(.*?)}}/g, (str, v) => {
+    const key = v.trim();
+    if (_.isExist(data[key])) return _.dataParse(data[key]);
+
+    return str;
+  })
+
+  return template;
+}
+
 export class Component {
   constructor(config) {
+    this.data = config.data ?? {};
     this.selector = config.selector;
     this.template = config.template;
     this.nodeList = [];
@@ -44,7 +58,8 @@ export class Component {
     if (!sourceEl) return false;
 
     if (_.isExist(this[BEFORE_MOUNT])) this[BEFORE_MOUNT]();
-    this.nodeList.push(_.replaceNode(sourceEl, this.template));
+    const template = compileTemplate(this.template, {...this.data, ...sourceEl.dataset});
+    this.nodeList.push(_.replaceNode(sourceEl, template));
     initEvents.call(this);
     if (_.isExist(this[MOUNTED])) this[MOUNTED]();
     return true;

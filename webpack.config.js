@@ -1,5 +1,7 @@
 const path = require('path')
-const htmlWebpackPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
@@ -20,14 +22,36 @@ module.exports = {
   },
 
   resolve: {
+    extensions: [ '.js', 'ts', '.css', '.scss', '.sass' ],
     alias: {
       'fw': path.resolve(__dirname, 'src', 'framework'),
     },
   },
 
+  module: {
+    rules: [
+      {
+        test: /\.(s[ac]ss|css)$/i,
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+      },
+    ],
+  },
+
   plugins: [
-    new htmlWebpackPlugin({
+    new CopyPlugin({
+      patterns: [
+        {
+          from: './assets',
+          to: './assets',
+        },
+      ],
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'Toxin: Выбор номеров отеля',
       template: './index.html',
     }),
+
+    new CleanWebpackPlugin(),
   ],
 }

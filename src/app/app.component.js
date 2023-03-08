@@ -9,7 +9,7 @@ class AppComponent extends FWComponent {
 export const appComponent = new AppComponent({
   selector: 'app-root',
   template: `<div>
-    <app-header></app-header>
+    <app-header data-title="Header"></app-header>
     <router-outlet></router-outlet>
     <app-footer></app-footer>
   </div>`,

@@ -1,0 +1,23 @@
+@mixin MaterialIcons() {
+  background: inherit;
+  direction: ltr;
+  display: inline-block;
+  font-family: Material Icons, serif;
+  font-feature-settings: 'liga';
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 24px;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+@mixin TextEllipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

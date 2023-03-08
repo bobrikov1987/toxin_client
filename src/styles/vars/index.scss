@@ -1,0 +1,14 @@
+@import "palette";
+
+$HtmlBackground: white;
+$HtmlFontFamily: Montserrat, Arial, sans-serif;
+$HtmlFontSize: 14px;
+$HtmlTextColor: $Color-DarkShade;
+
+$InputBorder: 1px solid $Color-DarkShade25;
+$InputBorderActive: 1px solid $Color-DarkShade50;
+$InputHeight: 44px;
+$InputWidth: 320px;
+$InputWidthSm: 266px;
+
+$DropdownShadow: 0 10px 20px $Color-DarkShade5;

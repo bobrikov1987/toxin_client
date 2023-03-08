@@ -1,0 +1,24 @@
+@import "vars", "fonts";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  &:active, &:focus {
+    outline: none;
+  }
+}
+
+html {
+  font-size: $HtmlFontSize;
+}
+
+body {
+  background: $HtmlBackground;
+  color: $HtmlTextColor;
+  font-family: $HtmlFontFamily;
+  user-select: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
